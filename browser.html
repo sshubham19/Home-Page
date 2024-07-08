@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dive into the Sea of Web and Information</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #000428, #004e92);
+            color: #fff;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 2;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4em;
+            color: #000;
+            margin: 0;
+            animation: fadeIn 2s forwards, glow 1.5s infinite alternate;
+        }
+
+        .search-bar {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-bar input[type="text"] {
+            width: 50%;
+            padding: 10px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .quick-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .quick-links a {
+            color: #00ff00;
+            text-decoration: none;
+            font-size: 1.2em;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .quick-links a:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .quick-links img {
+            width: 30px; /* Adjust size as needed */
+            height: 30px; /* Adjust size as needed */
+            margin-bottom: 5px; /* Spacing between icon and text */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #00ff00;
+            }
+            to {
+                text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00, 0 0 60px #00ff00;
+            }
+        }
+
+        .animated-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.9)), 
+                        url('https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_960_720.jpg') center/cover no-repeat;
+            animation: animateBackground 30s linear infinite;
+            transform-style: preserve-3d;
+            opacity: 0.8;
+        }
+
+        @keyframes animateBackground {
+            from { transform: translate3d(0, 0, -1000px); }
+            to { transform: translate3d(0, 0, 0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-background"></div>
+    <div class="container">
+        <h1>Dive into the Sea of Web and Information</h1>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search the web..." onkeydown="handleSearch(event)">
+        </div>
+        <div class="quick-links">
+            <a href="https://mail.google.com/mail/u/1/?ogbl#inbox">
+                <img src="https://www.google.com/s2/favicons?domain=mail.google.com" alt="Gmail Icon">
+                Gmail
+            </a>
+            <a href="https://www.youtube.com/">
+                <img src="https://www.google.com/s2/favicons?domain=www.youtube.com" alt="YouTube Icon">
+                YouTube
+            </a>
+            <a href="https://www.github.com">
+                <img src="https://www.google.com/s2/favicons?domain=www.github.com" alt="GitHub Icon">
+                GitHub
+            </a>
+            <a href="https://www.linkedin.com">
+                <img src="https://www.google.com/s2/favicons?domain=www.linkedin.com" alt="LinkedIn Icon">
+                LinkedIn
+            </a>
+        </div>
+        <div class="quick-links">
+            <a href="https://leetcode.com/problemset/">
+                <img src="https://www.google.com/s2/favicons?domain=leetcode.com" alt="LeetCode Icon">
+                LeetCode
+            </a>
+            <a href="https://skillwallet.smartinternz.com/">
+                <img src="https://www.google.com/s2/favicons?domain=skillwallet.smartinternz.com" alt="SmartInternZ Icon">
+                SmartInternZ
+            </a>
+            <a href="https://talentnext.wipro.com/PBLApp/twofactauth#">
+                <img src="https://www.google.com/s2/favicons?domain=talentnext.wipro.com" alt="Wipro Icon">
+                Wipro
+            </a>
+            <a href="https://www.vesselfinder.com/?imo=9285665">
+                <img src="https://www.google.com/s2/favicons?domain=www.vesselfinder.com" alt="Vessel Finder Icon">
+                MSC YOKOHAMA
+            </a>
+        </div>
+    </div>
+    <script>
+        function handleSearch(event) {
+            if (event.key === "Enter") {
+                const query = document.getElementById('search-input').value.trim();
+
+                if (query !== "") {
+                    const urlPattern = /^(https?:\/\/)?([\w\d-]+\.)+[\w-]{2,4}\/?/;
+
+                    if (urlPattern.test(query)) {
+                        // If the query matches a URL pattern, redirect to the URL
+                        let url = query;
+                        if (!/^https?:\/\//i.test(url)) {
+                            url = 'http://' + url;
+                        }
+                        window.location.href = url;
+                    } else {
+                        // Otherwise, perform a Google search
+                        const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                        window.location.href = url;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
